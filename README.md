@@ -31,3 +31,11 @@ Automated Tasks
 * DOM Mocking: JSDOM
 * Query Virtual Dom: Cheerio
 * CI build: Travis-CI (linx ci build)
+
+
+### HTTP
+> This app uses whatwg-fetch to make HTTP calls.
+
+> JSON Schema Faker is used to declare a schema for the mock api data and create a randomly genrated json data file.
+
+> JSON Server performs GET, POST, PATCH, and DELETE against the JSON Shema Faker file data.

@@ -1,7 +1,31 @@
-import chalk from 'chalk';
-import numeral from 'numeral';
+
 import './index.css';
+import { getUsers, deleteUser } from './api/userApi';
 
-const value = numeral(100).format('$0,0.00');
+getUsers().then(result => {
+  let userBody = "";
 
-console.log(chalk.blue(`This is a great javascript starter app. I would pay ${value} for it.`));
+  result.forEach(user => {
+    userBody += `<tr>
+      <td><a href="#" data-id="${user.id}" class="deleteUser">Delete</a></td>
+      <td>${user.id}<td>
+      <td>${user.firstName}<td>
+      <td>${user.lastName}<td>
+      <td>${user.email}<td>
+      </tr>`
+  });
+
+  global.document.getElementById('users').innerHTML = userBody;
+
+  const deleteLinks = global.document.getElementsByClassName('deleteUser');
+
+  Array.from(deleteLinks, link => {
+    link.onclick = function (event) {
+      const element = event.target;
+      event.preventDefault();
+      deleteUser(element.attributes["data-id"].value);
+      const row = element.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+    }
+  })
+});

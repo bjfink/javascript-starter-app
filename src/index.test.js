@@ -12,7 +12,7 @@ describe('Sample first test', () => {
 
 describe('index.html', () => {
 
-  it('should say hello', (done) => {
+  it('should say Javascript Starter App', (done) => {
     const index = fs.readFileSync('./src/index.html', "utf-8");
 
       jsdom.env(index, function (err, window) {
